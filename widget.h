@@ -2,9 +2,10 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include <QString>
 
 namespace Ui {
-class Widget;
+    class Widget;
 }
 
 class Widget : public QWidget
@@ -14,6 +15,9 @@ class Widget : public QWidget
 public:
     explicit Widget(QWidget *parent = nullptr);
     ~Widget();
+
+private slots:
+    void compute_sum() const;
 
 private:
     Ui::Widget *ui;
