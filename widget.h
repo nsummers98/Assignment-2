@@ -26,7 +26,6 @@ private slots:
 
 private:
     Ui::Widget *ui;
-    int schema = 1;
 };
 
 #endif // WIDGET_H

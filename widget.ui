@@ -466,12 +466,18 @@
       <property name="checked">
        <bool>true</bool>
       </property>
+      <property name="autoRepeat">
+       <bool>false</bool>
+      </property>
      </widget>
     </item>
     <item>
      <widget class="QRadioButton" name="radioButtonB">
       <property name="text">
        <string>Schema B</string>
+      </property>
+      <property name="autoRepeat">
+       <bool>false</bool>
       </property>
      </widget>
     </item>

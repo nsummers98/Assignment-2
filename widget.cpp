@@ -68,7 +68,7 @@ void Widget::compute_sum() const
 
     double totalP = 0;
 
-    if (this->schema == 1)
+    if (ui->radioButtonA->isChecked())
     {
         double hwP = hwAvg * 0.25;
         double mt1P = mt1 * 0.2;
@@ -78,7 +78,7 @@ void Widget::compute_sum() const
         totalP = hwP + mt1P + mt2P + finP;
     }
 
-    else if (this->schema == 2)
+    else if (ui->radioButtonB->isChecked())
     {
         double hwP = hwAvg * 0.25;
         double mtP = 0;
@@ -100,13 +100,13 @@ void Widget::compute_sum() const
 
 void Widget::on_radioButtonA_clicked()
 {
-    schema = 1;
+    this->compute_sum();
     return;
 }
 
 void Widget::on_radioButtonB_clicked()
 {
-    schema = 2;
+    this->compute_sum();
     return;
 }
 
