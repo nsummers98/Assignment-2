@@ -15,12 +15,18 @@ class Widget : public QWidget
 public:
     explicit Widget(QWidget *parent = nullptr);
     ~Widget();
+    void link(const QObject* spinBox, const QObject* hSlider);
 
 private slots:
     void compute_sum() const;
 
+    void on_radioButtonA_clicked();
+
+    void on_radioButtonB_clicked();
+
 private:
     Ui::Widget *ui;
+    int schema = 1;
 };
 
 #endif // WIDGET_H

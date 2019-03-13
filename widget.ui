@@ -31,7 +31,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QSlider" name="horizontalSlider">
+     <widget class="QSlider" name="horizontalSlider_1">
       <property name="maximum">
        <number>100</number>
       </property>
@@ -358,7 +358,10 @@
      </widget>
     </item>
     <item>
-     <widget class="QSlider" name="horizontalSlider_9">
+     <widget class="QSlider" name="horizontalSlider_mt1">
+      <property name="maximum">
+       <number>100</number>
+      </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
@@ -391,7 +394,10 @@
      </widget>
     </item>
     <item>
-     <widget class="QSlider" name="horizontalSlider_11">
+     <widget class="QSlider" name="horizontalSlider_mt2">
+      <property name="maximum">
+       <number>100</number>
+      </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
@@ -424,14 +430,21 @@
      </widget>
     </item>
     <item>
-     <widget class="QSlider" name="horizontalSlider_10">
+     <widget class="QSlider" name="horizontalSlider_fin">
+      <property name="maximum">
+       <number>100</number>
+      </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QSpinBox" name="spinBox_fin"/>
+     <widget class="QSpinBox" name="spinBox_fin">
+      <property name="maximum">
+       <number>100</number>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -449,6 +462,9 @@
      <widget class="QRadioButton" name="radioButtonA">
       <property name="text">
        <string>Schema A</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
       </property>
      </widget>
     </item>

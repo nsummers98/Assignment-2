@@ -1,15 +1,46 @@
 #include "widget.h"
 #include "ui_widget.h"
+#include <string>
 
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Widget)
 {
     ui->setupUi(this);
-    QObject::connect(ui->spinBox, SIGNAL(valueChanged(int)),
+    QObject::connect(ui->spinBox_1, SIGNAL(valueChanged(int)),
                      this, SLOT(compute_sum()));
     QObject::connect(ui->spinBox_2, SIGNAL(valueChanged(int)),
                      this, SLOT(compute_sum()));
+    QObject::connect(ui->spinBox_3, SIGNAL(valueChanged(int)),
+                     this, SLOT(compute_sum()));
+    QObject::connect(ui->spinBox_4, SIGNAL(valueChanged(int)),
+                     this, SLOT(compute_sum()));
+    QObject::connect(ui->spinBox_5, SIGNAL(valueChanged(int)),
+                     this, SLOT(compute_sum()));
+    QObject::connect(ui->spinBox_6, SIGNAL(valueChanged(int)),
+                     this, SLOT(compute_sum()));
+    QObject::connect(ui->spinBox_7, SIGNAL(valueChanged(int)),
+                     this, SLOT(compute_sum()));
+    QObject::connect(ui->spinBox_8, SIGNAL(valueChanged(int)),
+                     this, SLOT(compute_sum()));
+    QObject::connect(ui->spinBox_mt1, SIGNAL(valueChanged(int)),
+                     this, SLOT(compute_sum()));
+    QObject::connect(ui->spinBox_mt2, SIGNAL(valueChanged(int)),
+                     this, SLOT(compute_sum()));
+    QObject::connect(ui->spinBox_fin, SIGNAL(valueChanged(int)),
+                     this, SLOT(compute_sum()));
+
+    Widget::link(ui->spinBox_1, ui->horizontalSlider_1);
+    Widget::link(ui->spinBox_2, ui->horizontalSlider_2);
+    Widget::link(ui->spinBox_3, ui->horizontalSlider_3);
+    Widget::link(ui->spinBox_4, ui->horizontalSlider_4);
+    Widget::link(ui->spinBox_5, ui->horizontalSlider_5);
+    Widget::link(ui->spinBox_6, ui->horizontalSlider_6);
+    Widget::link(ui->spinBox_7, ui->horizontalSlider_7);
+    Widget::link(ui->spinBox_8, ui->horizontalSlider_8);
+    Widget::link(ui->spinBox_mt1, ui->horizontalSlider_mt1);
+    Widget::link(ui->spinBox_mt2, ui->horizontalSlider_mt2);
+    Widget::link(ui->spinBox_fin, ui->horizontalSlider_fin);
 }
 
 Widget::~Widget()
@@ -37,7 +68,7 @@ void Widget::compute_sum() const
 
     double totalP = 0;
 
-    if (ui->radioButtonA)
+    if (this->schema == 1)
     {
         double hwP = hwAvg * 0.25;
         double mt1P = mt1 * 0.2;
@@ -47,12 +78,12 @@ void Widget::compute_sum() const
         totalP = hwP + mt1P + mt2P + finP;
     }
 
-    else if (ui->radioButtonB)
+    else if (this->schema == 2)
     {
         double hwP = hwAvg * 0.25;
         double mtP = 0;
 
-        if (mt1 > mt2)
+        if (mt1 > mt2 || mt1 == mt2)
             mtP = mt1 * 0.3;
         else if (mt2 > mt1)
             mtP = mt2 * 0.3;
@@ -65,4 +96,24 @@ void Widget::compute_sum() const
     QString text(QString::number(totalP));
 
     ui->score->setText(text);
+}
+
+void Widget::on_radioButtonA_clicked()
+{
+    schema = 1;
+    return;
+}
+
+void Widget::on_radioButtonB_clicked()
+{
+    schema = 2;
+    return;
+}
+
+void Widget::link(const QObject* spinBox, const QObject* hSlider)
+{
+    QObject::connect(spinBox, SIGNAL(valueChanged(int)),
+                     hSlider, SLOT(setValue(int)));
+    QObject::connect(hSlider, SIGNAL(valueChanged(int)),
+                     spinBox, SLOT(setValue(int)));
 }
