@@ -117,3 +117,18 @@ void Widget::link(const QObject* spinBox, const QObject* hSlider)
     QObject::connect(hSlider, SIGNAL(valueChanged(int)),
                      spinBox, SLOT(setValue(int)));
 }
+
+
+void Widget::on_comboBox_currentTextChanged(const QString &arg1)
+{
+    if (arg1 == "PIC 10B. Intermediate Programming")
+    {
+        ui->label_12->setText("Midterm 2");
+        ui->verticalWidget_1->show();
+    }
+    else if (arg1 == "PIC 10C. Advanced Programming")
+    {
+        ui->label_12->setText("Final Project");
+        ui->verticalWidget_1->hide();
+    }
+}

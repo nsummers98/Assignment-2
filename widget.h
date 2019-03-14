@@ -16,6 +16,7 @@ public:
     explicit Widget(QWidget *parent = nullptr);
     ~Widget();
     void link(const QObject* spinBox, const QObject* hSlider);
+    void disable(const QLayout* obj);
 
 private slots:
     void compute_sum() const;
@@ -23,6 +24,10 @@ private slots:
     void on_radioButtonA_clicked();
 
     void on_radioButtonB_clicked();
+
+    void on_comboBox_currentTextChanged(const QString &arg1);
+
+
 
 private:
     Ui::Widget *ui;
