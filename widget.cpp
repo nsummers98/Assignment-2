@@ -64,33 +64,58 @@ void Widget::compute_sum() const
     int mt2 = ui->spinBox_mt2->value();
     int fin = ui->spinBox_fin->value();
 
-    double hwAvg = (hw1 + hw2 + hw3 + hw4 + hw5 + hw6 + hw7 + hw8) / 8;
+    double totalP = 0.0;
 
-    double totalP = 0;
-
-    if (ui->radioButtonA->isChecked())
+    if (ui->comboBox->currentText() == "PIC 10B. Intermediate Programming")
     {
-        double hwP = hwAvg * 0.25;
-        double mt1P = mt1 * 0.2;
-        double mt2P = mt2 * 0.2;
-        double finP = fin * 0.35;
+        double hwAvg = (hw1 + hw2 + hw3 + hw4 + hw5 + hw6 + hw7 + hw8) / 8;
 
-        totalP = hwP + mt1P + mt2P + finP;
+        if (ui->radioButtonA->isChecked())
+        {
+            double hwP = hwAvg * 0.25;
+            double mt1P = mt1 * 0.2;
+            double mt2P = mt2 * 0.2;
+            double finP = fin * 0.35;
+
+            totalP = hwP + mt1P + mt2P + finP;
+        }
+
+        else if (ui->radioButtonB->isChecked())
+        {
+            double hwP = hwAvg * 0.25;
+            double mtP = 0;
+
+            if (mt1 > mt2 || mt1 == mt2)
+                mtP = mt1 * 0.3;
+            else if (mt2 > mt1)
+                mtP = mt2 * 0.3;
+
+            double finP = fin * 0.44;
+
+            totalP = hwP + mtP + finP;
+        }
     }
 
-    else if (ui->radioButtonB->isChecked())
+    else if (ui->comboBox->currentText() == "PIC 10C. Advanced Programming")
     {
-        double hwP = hwAvg * 0.25;
-        double mtP = 0;
+        double hwAvg = (hw1 + hw2 + hw3) / 3;
+        double hwP = hwAvg * 0.15;
+        double projP = mt2 * 0.35;
 
-        if (mt1 > mt2 || mt1 == mt2)
-            mtP = mt1 * 0.3;
-        else if (mt2 > mt1)
-            mtP = mt2 * 0.3;
+        if (ui->radioButtonA->isChecked())
+        {
+            double mtP = mt1 * 0.25;
+            double finP = fin * 0.30;
 
-        double finP = fin * 0.44;
+            totalP = hwP + projP + mtP + finP;
+        }
 
-        totalP = hwP + mtP + finP;
+        else if (ui->radioButtonB->isChecked())
+        {
+            double finP = fin * 0.50;
+
+            totalP = hwP + projP + finP;
+        }
     }
 
     QString text(QString::number(totalP));
@@ -125,10 +150,12 @@ void Widget::on_comboBox_currentTextChanged(const QString &arg1)
     {
         ui->label_12->setText("Midterm 2");
         ui->verticalWidget_1->show();
+        compute_sum();
     }
     else if (arg1 == "PIC 10C. Advanced Programming")
     {
         ui->label_12->setText("Final Project");
         ui->verticalWidget_1->hide();
+        compute_sum();
     }
 }
